@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model (DOM)</title>
+</head>
+<body>
+    <h1>Formularios</h1>
+    <form action="#" id="formulario">
+        <label for="usuario">Usuario: </label>
+        <input type="text" name="usuario" id="usuario"><br>
+        <label for="pass">Password: </label>
+        <input type="password" name="pass" id="pass"><br>
+        <label for="pass">Genero: </label>
+        <input type="radio" name="genero" id="genero-masculino" value="Masculino">Masculino
+        <input type="radio" name="genero" id="genero-femenino" value="Femenino">Femenino
+        <input type="radio" name="genero" id="genero-otro" value="Otro">Otro
+        <label for="">Sugerencias:</label><br>
+        <textarea id="sugerencia" name="sugerencia" cols="30" rows="10"></textarea><br>
+        <input type="submit" value="ENVIAR">
+    </form>
+    <div id="respuesta"></div>
+    <script src="script.js"></script>
+</body>
+</html>

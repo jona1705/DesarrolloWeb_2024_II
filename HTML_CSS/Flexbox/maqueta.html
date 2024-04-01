@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maqueta Flexbox</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+
+        .contenedor{
+            display: flex;
+            flex-direction: column;
+        }
+
+        header, footer{
+            background-color: black;
+            width: 100%;
+            height: 50px;
+            color: white;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav{
+            background-color: #333;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul{
+            list-style: none;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        nav a{
+            color: white;
+            text-decoration: none ;  
+            font: size 20px;
+        }
+
+        nav a:hover{
+            color: yellow;
+            font-weight: bold;
+        }
+
+        main{
+            display: flex;
+            width: 100%;
+        }
+
+        aside{
+            width: 30%;
+            background-color: salmon;
+        }
+
+        section{
+            width: 70%;
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <header>ENCABEZADO PRINCIPAL</header>
+        <nav>
+            <ul>
+                <li><a href="">OPCION 1</a></li>
+                <li><a href="">OPCION 2</a></li>
+                <li><a href="">OPCION 3</a></li>
+                <li><a href="">OPCION 4</a></li>
+            </ul>
+        </nav>
+        <main>
+            <aside>TEXTO LATERAL</aside>
+            <section>TEXTO PRINCIPAL</section>
+        </main>
+        <footer>&copy; Derechos Reservados - FES Acatlan</footer>
+
+    </div>
+</body>
+</html>

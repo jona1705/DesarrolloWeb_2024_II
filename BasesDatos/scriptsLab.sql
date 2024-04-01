@@ -1,3 +1,5 @@
+-- CREANDO LA BASE DE DATOS DE UNIVERSIDAD
+
 CREATE DATABASE IF NOT EXISTS Universidad;
 
 USE Universidad;
@@ -6,9 +8,22 @@ DROP DATABASE IF EXISTS Universidad;
 
 SHOW DATABASES;
 
+-- TRABAJANDO CON LA TABLA DE PRUEBA (EN LA BASE DE DATOS DE UNIVERSIDAD)
+
 CREATE TABLE IF NOT EXISTS Prueba(
 	id INT
 );
+
+INSERT INTO Prueba(id) VALUES (12), (24), (45), (97);
+
+SELECT * FROM Prueba;
+
+-- DESACTIVAR EL MODO SEGURO
+SET SQL_SAFE_UPDATES = 0; 
+
+UPDATE Prueba SET id = 5;
+
+DELETE FROM Prueba;
 
 DROP TABLE IF EXISTS Prueba;
 
@@ -17,13 +32,29 @@ SELECT * FROM Prueba;
 ALTER TABLE Prueba 
 ADD COLUMN nombre varchar(50);
 
+ALTER TABLE Prueba
+ADD COLUMN rfc VARCHAR(14) AFTER id;
+
 DESCRIBE Prueba;
+
+INSERT INTO Prueba(id, rfc, nombre) VALUES 
+(12, 'LPMA180912', 'MANUEL'), 
+(24, 'MMLU170892', 'Luis'), 
+(45,'VRKA091100','Karla'), 
+(97,'PRJO130401', 'Jorge');
 
 ALTER TABLE Prueba 
 ADD COLUMN apellido varchar(80);
 
 ALTER TABLE Prueba 
 DROP COLUMN apellido;
+
+TRUNCATE TABLE Prueba;
+
+-- ACTIVAR EL MODO SEGURO
+SET SQL_SAFE_UPDATES = 1; 
+
+-- EMPIEZA LA BASE DE DATOS DE UNIVERSIDAD
 
 CREATE TABLE IF NOT EXISTS Estudiante(
 	id_estudiante INT PRIMARY KEY AUTO_INCREMENT,
@@ -148,11 +179,9 @@ CREATE TABLE IF NOT EXISTS Inscripcion(
     FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso)
 );
 
-
 -- Seleccionar todas las tablas
 SELECT * FROM Estudiante;
 SELECT * FROM Cursos;
-
 -- Insertar datos en la tabla inscripcion
 INSERT INTO Inscripcion(id_estudiante, id_curso) 
 VALUES(1, 1), (2,2),(1,3),(3, 4),(4, 5);
@@ -313,11 +342,43 @@ SELECT * FROM Calificaciones;
 
 -- FIN: ACTIVIDADES DE TAREA -------------------------------------
 
+-- EJEMPLO DE FUNCIONES DE AGREGACION Y GROUP BY
 
+-- Suma de calificaciones para un curso especifico
+SELECT cur.nombre_curso, SUM(calf.calificacion) AS sumaCalf
+FROM Calificaciones AS calf JOIN Cursos AS cur
+ON calf.id_curso = cur.id_curso
+GROUP BY calf.id_curso;
 
+-- Promedio de calificaciones para un curso especifico
+SELECT cur.nombre_curso, AVG(calf.calificacion) AS sumaCalf
+FROM Calificaciones AS calf JOIN Cursos AS cur
+ON calf.id_curso = cur.id_curso
+GROUP BY calf.id_curso;
 
+-- Numero de inscripciones total por alumno
+SELECT e.nombre, e.apellido, c.nombre_carrera, 
+COUNT(i.id_inscripcion) AS TotalInsc
+FROM Inscripcion AS i JOIN Estudiante AS e
+ON e.id_estudiante = i.id_estudiante
+JOIN Carreras AS c
+ON e.id_carrera = c.id_carrera
+GROUP BY i.id_estudiante;
 
+-- Calificacion maxima obtenida por estudiante
+SELECT id_estudiante, MAX(calificacion) AS MaxCalf
+FROM Calificaciones
+GROUP BY id_estudiante;
 
+-- Calificacion minima obtenida por estudiante
+SELECT id_estudiante, MIN(calificacion) AS MinCalf
+FROM Calificaciones
+GROUP BY id_estudiante;
 
+-- Estudiantes que no han realizado ninguna inscripcion
+SELECT id_estudiante
+FROM Estudiante
+WHERE id_estudiante NOT IN (SELECT id_estudiante FROM Inscripcion);
 
-
+-- Revisar la tabla de inscripciones
+SELECT * FROM Inscripcion;
