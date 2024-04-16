@@ -382,3 +382,5 @@ WHERE id_estudiante NOT IN (SELECT id_estudiante FROM Inscripcion);
 
 -- Revisar la tabla de inscripciones
 SELECT * FROM Inscripcion;
+
+SELECT * FROM Estudiante;

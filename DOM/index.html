@@ -4,20 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Object Model (DOM)</title>
+    <style>
+        body{
+            background-color:darkorange;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        form{
+            max-width: 600px;
+            margin: 20px auto;
+            background-color:beige;
+        }
+    </style>
 </head>
 <body>
     <h1>Formularios</h1>
     <form action="#" id="formulario">
-        <label for="usuario">Usuario: </label>
-        <input type="text" name="usuario" id="usuario"><br>
-        <label for="pass">Password: </label>
-        <input type="password" name="pass" id="pass"><br>
-        <label for="pass">Genero: </label>
-        <input type="radio" name="genero" id="genero-masculino" value="Masculino">Masculino
-        <input type="radio" name="genero" id="genero-femenino" value="Femenino">Femenino
-        <input type="radio" name="genero" id="genero-otro" value="Otro">Otro
-        <label for="">Sugerencias:</label><br>
-        <textarea id="sugerencia" name="sugerencia" cols="30" rows="10"></textarea><br>
+        <fieldset>
+            <legend>Datos personales:</legend>
+            <label for="nombre">Nombre(s): </label>
+            <input type="text" name="nombre" id="nombre"><br>
+            <label for="apePat">Apellido Paterno: </label>
+            <input type="text" name="apePat" id="apePat"><br>
+            <label for="apeMat">Apellido Materno: </label>
+            <input type="text" name="apeMat" id="apeMat"><br>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Género:</legend>
+            <input type="radio" name="genero" id="genero-masculino" value="Masculino">Masculino
+            <input type="radio" name="genero" id="genero-femenino" value="Femenino">Femenino
+            <input type="radio" name="genero" id="genero-otro" value="Otro">Otro <br>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Lenguajes de Programación:</legend>
+            <input type="checkbox" name="lenguajes" id="html" value="HTML"><label for="html">HTML</label><br>
+            <input type="checkbox" name="lenguajes" id="css" value="CSS"><label for="css">CSS</label><br>
+            <input type="checkbox" name="lenguajes" id="php" value="PHP"><label for="php">PHP</label><br>
+            <input type="checkbox" name="lenguajes" id="javascript" value="Javascript"><label for="javascript">JavaScript</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>País de origen:</legend>
+            <select name="pais" id="pais">
+                <option value="Mexico">México</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Canadá">Canadá</option>
+            </select><br>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Sugerencias:</legend>
+            <textarea id="sugerencia" name="sugerencia" cols="30" rows="10"></textarea><br>
+        </fieldset>
         <input type="submit" value="ENVIAR">
     </form>
     <div id="respuesta"></div>

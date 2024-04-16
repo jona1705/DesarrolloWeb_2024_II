@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo Oscuro</title>
+    <style>
+        body{
+            background-color: #fff;
+            color: #000;
+        }
+
+        .modo_oscuro{
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>FES Acatlán</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae tempora voluptatibus consequuntur adipisci labore est!</p>
+    <button id="btnCambiar">Modo Oscuro</button>
+    <script>
+        function cambiarModoOscuro(){
+            const body = document.body;
+            body.classList.toggle('modo_oscuro');
+
+            // Almacenar modo en local storage
+            const esModoOscuro = body.classList.contains('modo_oscuro');
+            localStorage.setItem('modoOscuro', esModoOscuro);
+        }
+
+        // Checar si el modo oscuro esta activo en algun sesion previa
+        const esModoOscuroActivado = localStorage.getItem('modoOscuro') === "true";
+
+        // Inicializar el modo oscuro en base a las preferencias del usuario
+        if(esModoOscuroActivado){
+            document.body.classList.add("modo_oscuro");
+        }
+
+        // Evento para escuchar el boton
+        const btnCambiar = document.getElementById('btnCambiar');
+        btnCambiar.addEventListener('click', cambiarModoOscuro);
+    </script>
+</body>
+</html>

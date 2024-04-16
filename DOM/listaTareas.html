@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Tareas</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .contenedor{
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        input[type="text"]{
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button{
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+
+        ul{
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li{
+            margin-bottom: 10px;
+        }
+
+        .completed{
+            text-decoration: line-through;
+            color: #888;
+            opacity: 0.6;
+        }
+
+        .btnBorrar{
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .btnBorrar:hover{
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Lista de Tareas</h1>
+        <input type="text" id="entradaTarea" placeholder="Añadir nueva tarea">
+        <button id="btnAnadir">Añadir tarea</button>
+        <ul id="listaTareas">
+            <!-- Aqui se agregan las tareas -->
+        </ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const entradaTarea = document.getElementById('entradaTarea');
+            const anadirTarea = document.getElementById('btnAnadir');
+            const listaTarea = document.getElementById('listaTareas');
+
+            // Evento que se activa cuando presiono el boton
+            anadirTarea.addEventListener('click', function(){
+                addTarea();
+            });
+
+            // Funcion addTarea
+            function addTarea(){
+                const textoTarea = entradaTarea.value.trim();
+                if(textoTarea !== ""){
+                    const nuevaTarea = document.createElement("li"); 
+                    nuevaTarea.textContent = textoTarea;  
+                    const btnBorrar =  document.createElement("button");
+                    btnBorrar.textContent = "Borrar";
+                    btnBorrar.className = "btnBorrar";
+                    nuevaTarea.appendChild(btnBorrar);
+                    listaTarea.appendChild(nuevaTarea);
+                    entradaTarea.value = "";             
+                }
+            }
+
+            listaTarea.addEventListener('click', function(event){
+                if(event.target.tagName === "LI"){
+                    event.target.classList.toggle("completed");
+                } else if(event.target.classList.contains("btnBorrar")){
+                    event.target.parentNode.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
