@@ -345,16 +345,20 @@ SELECT * FROM Calificaciones;
 -- EJEMPLO DE FUNCIONES DE AGREGACION Y GROUP BY
 
 -- Suma de calificaciones para un curso especifico
+CREATE VIEW suma_calificaciones AS
 SELECT cur.nombre_curso, SUM(calf.calificacion) AS sumaCalf
 FROM Calificaciones AS calf JOIN Cursos AS cur
 ON calf.id_curso = cur.id_curso
 GROUP BY calf.id_curso;
 
+SELECT COUNT(*) FROM suma_calificaciones;
+
 -- Promedio de calificaciones para un curso especifico
 SELECT cur.nombre_curso, AVG(calf.calificacion) AS sumaCalf
 FROM Calificaciones AS calf JOIN Cursos AS cur
 ON calf.id_curso = cur.id_curso
-GROUP BY calf.id_curso;
+GROUP BY calf.id_curso
+HAVING AVG(calf.calificacion) > 8;
 
 -- Numero de inscripciones total por alumno
 SELECT e.nombre, e.apellido, c.nombre_carrera, 
@@ -383,4 +387,13 @@ WHERE id_estudiante NOT IN (SELECT id_estudiante FROM Inscripcion);
 -- Revisar la tabla de inscripciones
 SELECT * FROM Inscripcion;
 
-SELECT * FROM Estudiante;
+-- SELECT ESTUDIANTES
+CREATE VIEW alumnos_carreras AS
+SELECT c.nombre_carrera, COUNT(*) AS TotalAlumnos FROM Estudiante e JOIN carreras c
+ON e.id_carrera = c.id_carrera
+GROUP BY e.id_carrera
+HAVING COUNT(*) > 2;
+
+SELECT * FROM alumnos_carreras;
+
+DESCRIBE alumnos_carreras;
