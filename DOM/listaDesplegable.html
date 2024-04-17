@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista desplegable dinámica</title>
+<style>
+    /* Estilos básicos */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .container {
+        text-align: center;
+    }
+
+    select {
+        padding: 10px;
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Selecciona una opción:</h2>
+        <select id="primarySelect" onchange="updateSecondarySelect()">
+            <option value="1">Opción 1</option>
+            <option value="2">Opción 2</option>
+            <option value="3">Opción 3</option>
+        </select>
+        <select id="secondarySelect">
+        <!-- Opciones dinámicas se añadirán aquí -->
+        </select>
+    </div>
+<script>
+    function updateSecondarySelect() {
+        let primarySelect = document.getElementById("primarySelect");
+        let secondarySelect =
+        document.getElementById("secondarySelect");
+        let primaryValue = primarySelect.value;
+        // Limpiar opciones anteriores
+        secondarySelect.innerHTML = "";
+        // Añadir nuevas opciones basadas en la selección primaria
+        switch(primaryValue) {
+            case "1":
+                addOptions(secondarySelect, ["Opción A1", "Opción A2", "Opción A3"]);
+                break;
+            case "2":
+                addOptions(secondarySelect, ["Opción B1", "Opción B2", "Opción B3"]);
+                break;
+            case "3":
+                addOptions(secondarySelect, ["Opción C1", "Opción C2", "Opción C3"]);
+                break;
+            default:
+                break;
+        }
+    }
+
+    function addOptions(selectElement, options) {
+        options.forEach(function(option) {
+        var optionElement = document.createElement("option");
+        optionElement.textContent = option;
+        selectElement.appendChild(optionElement);
+        });
+    }
+
+    // Llamar a la función al cargar la página para asegurar que el
+    // segundo menú esté actualizado
+    updateSecondarySelect();
+</script>
+</body>
+</html>

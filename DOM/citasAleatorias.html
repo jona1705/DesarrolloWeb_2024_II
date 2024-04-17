@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Generador de Citas Aleatorias</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    #quote {
+        margin: 50px auto;
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        max-width: 600px;
+    }
+
+    #quote p {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <div id="quote">
+        <p id="quote-text">Haz clic en el botón para generar una cita
+        aleatoria.</p>
+    </div>
+    <button id="generate-btn">Generar Cita</button>
+    <script>
+    // Array de citas
+    const quotes = [
+    "La vida es lo que pasa mientras estás ocupado haciendo otros planes. - John Lennon",
+    "La única manera de hacer un gran trabajo es amar lo que haces. - Steve Jobs",
+    "El éxito es ir de fracaso en fracaso sin perder el entusiasmo. - Winston Churchill",
+    "No te preocupes por los fracasos, preocúpate por las oportunidades que pierdes al no intentarlo. - Jack Canfield",
+    "La vida es 10% lo que me pasa y 90% cómo reacciono a ello. - Charles R. Swindoll",
+    "El único modo de hacer un gran trabajo es amar lo que haces. - Steve Jobs",
+    "La felicidad es una mariposa que, siempre que se la persigue, está fuera de nuestro alcance; pero que, si te sientas tranquilamente, puede posarse sobre ti. - Nathaniel Hawthorne"
+    ];  
+
+    // Función para generar una cita aleatoria
+    function generateQuote() {
+        const randomNumber = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomNumber];
+        document.getElementById('quote-text').textContent = randomQuote;
+    }
+
+    // Para generar las frases empleando temporizador
+    // setInterval(generateQuote, 3000);
+    
+    // Event listener para el botón de generar cita
+    document.getElementById('generate-btn').addEventListener('click', generateQuote);
+</script>
+</body>
+</html>

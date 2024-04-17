@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Cronómetro Digital</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 100px;
+        font-size: 2em;
+    }
+</style>
+</head>
+<body>
+    <div id="display">00:00:00</div>
+    <button id="startStop">Iniciar</button>
+    <button id="reset">Reiniciar</button>
+    <script>
+        let timer; // Variable para almacenar el temporizador
+        let isRunning = false; // Variable para controlar si el cronómetro está corriendo
+        let hours = 0, minutes = 0, seconds = 0; // Variables para almacenar las horas, minutos y segundos
+        // Función para actualizar el cronómetro
+        function updateTimer() {
+            seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+        // Formatear el tiempo en HH:MM:SS
+        const timeString = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,
+        '0')}:${seconds.toString().padStart(2, '0')}`;
+        document.getElementById('display').textContent = timeString;
+    }
+
+    // Función para iniciar o detener el cronómetro
+    function startStopTimer() {
+        if (isRunning) {
+            // clearInterval() en JavaScript se utiliza para detener la
+            // ejecución de un intervalo que haya sido creado previamente
+            // mediante la función setInterval()
+            clearInterval(timer);
+            document.getElementById('startStop').textContent = 'Iniciar';
+        } else {
+            // setInterval en JavaScript se utiliza para ejecutar una función o un
+            // fragmento de código repetidamente a intervalos específicos
+            timer = setInterval(updateTimer, 1000);
+            document.getElementById('startStop').textContent = 'Detener';
+        }
+        isRunning = !isRunning;
+    }
+
+    // Función para reiniciar el cronómetro
+    function resetTimer() {
+        clearInterval(timer);
+        isRunning = false;
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+        document.getElementById('display').textContent = '00:00:00';
+        document.getElementById('startStop').textContent = 'Iniciar';
+    }
+
+    // Event listener para el botón de iniciar/detener
+    document.getElementById('startStop').addEventListener('click', startStopTimer);
+    // Event listener para el botón de reiniciar
+    document.getElementById('reset').addEventListener('click', resetTimer);
+</script>
+</body>
+</html>
