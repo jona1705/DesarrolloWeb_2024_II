@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario de Validación</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h2>Formulario de Validación</h2>
+
+<form id="myForm">
+    <div>
+        <label for="texto">Texto (sin números):</label>
+        <input type="text" id="texto" name="texto"><br>
+        <span id="textoError" class="error"></span>
+    </div>
+    <div>
+        <label for="numero">Número (entre 1 y 100):</label>
+        <input type="number" id="numero" name="numero"><br>
+        <span id="numeroError" class="error"></span>
+    </div>
+    <button type="submit">Enviar</button>
+</form>
+
+<script src="js/script1.js"> </script>
+</body>
+</html>

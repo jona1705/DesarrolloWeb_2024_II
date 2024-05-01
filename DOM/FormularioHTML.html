@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario con Validación HTML</title>
+<style>
+  input:invalid {
+    border: 2px solid red;
+  }
+
+  input:valid {
+    border: 2px solid green;
+  }
+</style>
+</head>
+<body>
+  <h2>Formulario con Validación HTML</h2>
+  <form action="#" method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Ingrese Nombre"
+    pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="El nombre solo puede contener letras y espacios" required>
+    <br><br>
+    <label for="edad">Edad (entre 0 y 100):</label>
+    <input type="number" id="edad" name="edad" min="0" max="100" placeholder="Ingrese Edad"
+    title="La edad debe estar entre 0 y 100" required>
+    <br><br>
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>

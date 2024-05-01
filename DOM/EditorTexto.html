@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor de Texto</title>
+<style>
+    #editor {
+        width: 500px;
+        height: 200px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+
+<div id="editor" contenteditable="true"></div>
+<div>
+    <button id="boldButton">Negrita</button>
+    <button id="italicButton">Cursiva</button>
+    <button id="underlineButton">Subrayado</button>
+    <button id="findReplaceButton">Buscar/Reemplazar</button>
+    <button id="resetButton">Limpiar Texto</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const editor = document.getElementById('editor');
+        const boldButton = document.getElementById('boldButton');
+        const italicButton = document.getElementById('italicButton');
+        const underlineButton = document.getElementById('underlineButton');
+        const findReplaceButton = document.getElementById('findReplaceButton');
+        const resetButton = document.getElementById('resetButton');
+
+        // Función para cambiar el estilo del texto
+        function changeStyle(style) {
+            document.execCommand(style, false, null);
+        }
+
+        // Función para buscar y reemplazar texto
+        function findAndReplace() {
+            const findText = prompt('Buscar:');
+            if (findText) {
+                const replaceText = prompt('Reemplazar con:');
+                if (replaceText) {
+                    const regex = new RegExp(findText, 'g');
+                    const newText = editor.innerHTML.replace(regex, replaceText);
+                    editor.innerHTML = newText;
+                }
+            }
+        }
+
+        // Evento para cambiar a negrita
+        boldButton.addEventListener('click', function() {
+            changeStyle('bold');
+        });
+
+        // Evento para cambiar a cursiva
+        italicButton.addEventListener('click', function() {
+            changeStyle('italic');
+        });
+
+        // Evento para cambiar a subrayado
+        underlineButton.addEventListener('click', function() {
+            changeStyle('underline');
+        });
+
+        // Evento para buscar y reemplazar
+        findReplaceButton.addEventListener('click', function() {
+            findAndReplace();
+        });
+
+        resetButton.addEventListener('click', function() {
+            document.getElementById("editor").innerHTML = "";
+        });
+
+        // Evento para cambiar a negrita cuando se presiona Ctrl+B
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'b') {
+                changeStyle('bold');
+                event.preventDefault();
+            }
+        });
+
+        // Evento para cambiar a cursiva cuando se presiona Ctrl+I
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'i') {
+                changeStyle('italic');
+                event.preventDefault();
+            }
+        });
+
+        // Evento para cambiar a subrayado cuando se presiona Ctrl+U
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'u') {
+                changeStyle('underline');
+                event.preventDefault();
+            }
+        });
+
+        // Evento para buscar y reemplazar cuando se presiona Ctrl+F
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'f') {
+                findAndReplace();
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

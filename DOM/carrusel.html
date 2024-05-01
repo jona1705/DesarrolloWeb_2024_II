@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagenes</title>
+    <style>
+        .gallery {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .slides {
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        .slides img {
+            width: 100%;
+            height: 20rem;
+            display: block;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery">
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <div class="slides">
+            <img src="imagenes/imagen1.jpeg" alt="Imagen 1">
+            <img src="imagenes/imagen2.jpeg" alt="Imagen 2">
+            <img src="imagenes/imagen3.jpeg" alt="Imagen 3">
+            <img src="imagenes/imagen4.jpeg" alt="Imagen 4">
+            <img src="imagenes/imagen5.png" alt="Imagen 5">
+        </div>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    <script>
+        let slideIndex = 0;
+        showSlide(slideIndex);
+        function nextSlide() {
+            showSlide(slideIndex += 1);
+        }
+        function prevSlide() {
+            showSlide(slideIndex -= 1);
+        }
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slides img');
+            if (n >= slides.length) {
+                slideIndex = 0;
+            }
+            if (n < 0) {
+                slideIndex = slides.length - 1;
+            }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            slides[slideIndex].style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evento keypress JS</title>
+<style>
+    /* Estilo para el textarea */
+    #keyInfoDisplay {
+        width: 500px;
+        height: 300px;
+        resize: none; /* Evitar que se pueda cambiar el tamaño */
+    }
+</style>
+</head>
+<body>
+<h1>Manejo de Evento keypress JS</h1>
+<textarea id="keyInfoDisplay" readonly></textarea><br>
+<button>Resetear Textarea</button>
+<!-- <button onclick="resetTextarea()">Resetear Textarea</button> -->
+<script>
+// Función que se ejecuta cuando se presiona una tecla
+function keyPressed(event) {
+    console.log(event);
+    // Obtener el código de la tecla presionada
+    var keyCode = event.keyCode || event.which;
+    // Obtener el valor de la tecla presionada
+   //var key = String.fromCharCode(keyCode);
+   var key = event.key;
+    // Obtener el elemento textarea
+    var textarea = document.getElementById("keyInfoDisplay");
+    // Obtener el contenido actual del textarea
+    var currentContent = textarea.value;
+    // Agregar el código y el valor de la tecla presionada al contenido del textarea
+    textarea.value = currentContent + "Tecla presionada - Código: " + keyCode + ", Valor: " + key + "\n";
+}
+
+// Función para resetear el contenido del textarea
+function resetTextarea() {
+    document.getElementById("keyInfoDisplay").value = "";
+}
+
+// Añadir un event listener para el evento click que resetea el textarea
+document.addEventListener("click", resetTextarea);
+
+// Añadir un event listener para el evento keypress en el documento
+document.addEventListener("keypress", keyPressed);
+</script>
+</body>
+</html>
