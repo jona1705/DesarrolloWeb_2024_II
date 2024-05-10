@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Usuarios</h1>
+    <ul id="lista-usuarios">
+
+    </ul>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            fetch('https://pokeapi.co/api/v2/pokemon')
+            .then(response => {
+                if(!response.ok){
+                    throw new  Error("Error en la red");
+                } else{
+                    return response.json();
+                    //console.log(response.json());
+                }
+            })
+            .then(data => {
+                //console.log(data.results);
+                let lista = document.getElementById("lista-usuarios");
+                data.results.forEach(dato => {
+                    //console.log(dato.name);
+                    let item = document.createElement("li");
+                    item.textContent = dato.name;
+                    lista.appendChild(item);
+                });
+            })
+            .catch(error => {
+                console.log("Error al procesar los datos");
+            })
+        })    
+    </script>
+</body>   
+</html>
