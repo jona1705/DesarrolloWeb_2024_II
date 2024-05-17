@@ -2,6 +2,20 @@ CREATE DATABASE TEST;
 
 USE TEST;
 
+CREATE TABLE ordenes(
+	id INT PRIMARY KEY auto_increment, 
+    cliente VARCHAR(100),
+    monto DECIMAL(10,2)
+);
+
+CREATE TABLE bitacora(
+	id INT PRIMARY KEY auto_increment, 
+    operacion VARCHAR(100),
+    id_registro int,
+    fecha_operacion TIMESTAMP,
+    usuario VARCHAR(45)
+);
+
 DELIMITER //
 CREATE TRIGGER registro_insercion
 AFTER INSERT ON ordenes
